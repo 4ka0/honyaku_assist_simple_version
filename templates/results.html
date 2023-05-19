@@ -1,0 +1,48 @@
+{% load humanize %}
+
+<p class="mb-3">
+
+    DeepL result
+
+    <!-- Show details if no errors received from DeepL -->
+    {% if not "Error" in deepl_result %}
+        <span class="small text-muted">
+            ({{ target_lang|upper }})
+            (No. of characters: {{ deepl_result_length|intcomma }})
+            (Current usage: {{ deepl_usage|intcomma }} / 500,000 characters this month)
+        </span>
+    {% endif %}
+
+    <!-- DeepL result -->
+
+    {% if not "Error" in deepl_result %}
+        <div class="alert alert-info" role="alert">
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+    {% endif %}
+        {{ deepl_result }}
+    </div>
+</p>
+
+<p class="mb-3">
+
+    Google result
+
+    <!-- Show details if no errors  received from Google -->
+    {% if not "Error" in google_result %}
+        <span class="small text-muted">
+            ({{ target_lang|upper }})
+            (No. of characters: {{ google_result_length|intcomma }})
+            (Current usage: {{ google_usage|intcomma }} / 500,000 characters this month)
+        </span>
+    {% endif %}
+
+    <!-- Google result -->
+    {% if not "Error" in google_result %}
+        <div class="alert alert-primary" role="alert">
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+    {% endif %}
+        {{ google_result|safe }}
+    </div>
+</p>

@@ -13,7 +13,7 @@ from .models import Engine
 
 USAGE_LIMIT = 500000
 USAGE_LIMIT_MESSAGE = (
-    "Error: Either this translation will result in this month's limit being exceeded, "
+    "Usage Error: Either this translation will result in this month's limit being exceeded, "
     "or this month's limit has already been exceeded. Please try again next month."
 )
 
@@ -109,7 +109,7 @@ def call_deepl_api(source_text, source_lang, target_lang):
             usage += len(source_text)
 
     except DeepLException as e:
-        result = "Error from DeepL: " + str(e)
+        result = "DeepL Error: " + str(e)
         return result, usage
 
     except Exception as e:
@@ -178,7 +178,7 @@ def call_google_api_v3(source_text, source_lang, target_lang):
                 )
 
         except Exception as e:
-            result = "Error: " + str(e)
+            result = "Google Error: " + str(e)
 
         usage = update_google_usage(source_text)
 

@@ -162,3 +162,8 @@ cython_debug/
 .DS_Store
 .vscode/
 google-translate-service-account.json
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

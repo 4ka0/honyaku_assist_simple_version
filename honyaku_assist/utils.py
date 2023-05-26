@@ -67,6 +67,23 @@ def update_google_usage(source_text):
     return google_engine.current_usage
 
 
+def empty_check(result):
+    """
+    Method to check whether a translation result received from an API is empty.
+
+    Args:
+        result (str): The translation result from an API.
+
+    Returns:
+        output (str): Either the translation result unchanged,
+                      or an error message.
+    """
+    if not result:
+        return "API Error: No translation received."
+
+    return result
+
+
 def call_deepl_api(source_text, source_lang, target_lang):
     """
     Calls the DeepL API to get a translation for source_text.
@@ -115,6 +132,8 @@ def call_deepl_api(source_text, source_lang, target_lang):
     except Exception as e:
         result = "Error: " + str(e)
         return result, usage
+
+    result = empty_check(result)
 
     return result, usage
 
@@ -181,6 +200,7 @@ def call_google_api_v3(source_text, source_lang, target_lang):
             result = "Google Error: " + str(e)
 
         usage = update_google_usage(source_text)
+        result = empty_check(result)
 
     return result, usage
 

@@ -3,7 +3,7 @@ from django.urls import reverse
 from freezegun import freeze_time
 
 from ..models import Engine
-from ..utils import get_google_usage, update_google_usage, get_source_target_languages
+from ..utils import get_google_usage, update_google_usage, get_source_target_languages, empty_check
 
 
 class TestGetSourceTargetLanguages(SimpleTestCase):
@@ -49,3 +49,20 @@ class TestUpdateGoogleUsage(TestCase):
 
         self.assertEqual(usage, source_text_len)
         self.assertNotEqual(usage, 0)
+
+
+class TestEmptyCheck(TestCase):
+
+    def test_empty_check_with_nonempty_string(self):
+        nonempty_translation = "This is a test."
+        output = empty_check(nonempty_translation)
+
+        self.assertEqual(output, nonempty_translation)
+        self.assertNotEqual(output, "")
+
+    def test_empty_check_with_empty_string(self):
+        empty_translation = ""
+        output = empty_check(empty_translation)
+
+        self.assertEqual(output, "API Error: No translation received.")
+        self.assertNotEqual(output, "")

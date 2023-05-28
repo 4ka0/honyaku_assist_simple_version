@@ -28,10 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # DEBUG = env.bool("DEBUG")
-DEBUG = os.environ.get('DJANGO_DEBUG')
+# SECRET_KEY = env.str("SECRET_KEY")
+# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
-SECRET_KEY = env.str("SECRET_KEY")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+DEBUG = os.environ.get('DJANGO_DEBUG')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS')
 
 
 # Application definition

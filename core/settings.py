@@ -30,7 +30,8 @@ DEBUG = os.environ["DJANGO_DEBUG"]
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 ALLOWED_HOSTS = [
     "honyaku-assist-simple-dev.ap-northeast-1.elasticbeanstalk.com",
-    "honyaku-apps.dev"
+    "honyaku-apps.dev",
+    "172.31.39.0",
 ]
 
 

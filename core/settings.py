@@ -31,9 +31,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = env.str("SECRET_KEY")
 # ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
-DEBUG = os.environ['DJANGO_DEBUG']
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-ALLOWED_HOSTS = os.environ['DJANGO_ALLOWED_HOSTS']
+DEBUG = os.environ["DJANGO_DEBUG"]
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+ALLOWED_HOSTS = ["honyaku-assist-simple-dev.ap-northeast-1.elasticbeanstalk.com"]
 
 
 # Application definition

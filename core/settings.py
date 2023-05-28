@@ -12,25 +12,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-from environs import Env
-
-
-# Environment variables
-env = Env()
-env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
+# Used for local environment variables
+# from environs import Env
+# env = Env()
+# env.read_env()
 # DEBUG = env.bool("DEBUG")
 # SECRET_KEY = env.str("SECRET_KEY")
 # ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
+# Used for production environment variables
 DEBUG = os.environ["DJANGO_DEBUG"]
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 ALLOWED_HOSTS = ["honyaku-assist-simple-dev.ap-northeast-1.elasticbeanstalk.com"]

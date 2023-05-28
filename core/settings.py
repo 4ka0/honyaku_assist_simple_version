@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Third party
     "crispy_forms",
     "crispy_bootstrap5",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -157,7 +158,21 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
 # Crispy template settings
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+# AWS S3 bucket settings
+
+if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_S3_REGION_NAME = os.environ['AWS_S3_REGION_NAME']
+
+    AWS_S3_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_S3_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']

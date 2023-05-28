@@ -1,6 +1,7 @@
+import os
 from django.conf import settings
 
-from environs import Env
+# from environs import Env  # For local environment variables
 import deepl
 from deepl.exceptions import DeepLException
 from google.oauth2 import service_account
@@ -98,14 +99,16 @@ def call_deepl_api(source_text, source_lang, target_lang):
         usage (str): Number of characters translated in the current month.
     """
 
-    env = Env()
-    env.read_env()
+    # For local environment variables
+    # env = Env()
+    # env.read_env()
 
     result, usage = "", ""
 
     try:
         # Authenticate
-        translator = deepl.Translator(env.str("DEEPL_AUTH_KEY"))
+        # translator = deepl.Translator(env.str("DEEPL_AUTH_KEY"))  # For local env variables
+        translator = deepl.Translator(os.environ["DEEPL_AUTH_KEY"])  # For production env variables
 
         # Get current usage
         usage_obj = translator.get_usage()
@@ -153,8 +156,9 @@ def call_google_api_v3(source_text, source_lang, target_lang):
         usage (int): Number of characters translated so far in the current month.
     """
 
-    env = Env()
-    env.read_env()
+    # For local environment variables
+    # env = Env()
+    # env.read_env()
 
     # Check current usage, and output error message if there is not enough
     # usage left to translate this source text.
@@ -166,7 +170,8 @@ def call_google_api_v3(source_text, source_lang, target_lang):
         try:
             # Authenticate
             service_account_key = str(
-                settings.BASE_DIR.joinpath(env.str("GOOGLE_PROJECT_CREDENTIALS"))
+                # settings.BASE_DIR.joinpath(env.str("GOOGLE_PROJECT_CREDENTIALS"))  # Local
+                settings.BASE_DIR.joinpath(os.environ["GOOGLE_PROJECT_CREDENTIALS"])  # Production
             )
             credentials = service_account.Credentials.from_service_account_file(
                 service_account_key
@@ -174,7 +179,9 @@ def call_google_api_v3(source_text, source_lang, target_lang):
             client = translate.TranslationServiceClient(credentials=credentials)
 
             # Set up Google project params
-            project_id = env.str("GOOGLE_PROJECT_ID")
+            # project_id = env.str("GOOGLE_PROJECT_ID")  # Local version
+            project_id = os.environ["GOOGLE_PROJECT_ID"]  # Deployment version
+
             location = "global"
             parent = f"projects/{project_id}/locations/{location}"
 

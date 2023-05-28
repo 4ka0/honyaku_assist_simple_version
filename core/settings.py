@@ -17,15 +17,15 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Used for local environment variables
+# For local environment variables
 # from environs import Env
 # env = Env()
 # env.read_env()
 # DEBUG = env.bool("DEBUG")
 # SECRET_KEY = env.str("SECRET_KEY")
-# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+# ALLOWED_HOSTS = ["127.0.0.1"]
 
-# Used for production environment variables
+# For production environment variables
 DEBUG = os.environ["DJANGO_DEBUG"]
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 ALLOWED_HOSTS = ["honyaku-assist-simple-dev.ap-northeast-1.elasticbeanstalk.com"]

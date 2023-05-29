@@ -109,6 +109,9 @@ def call_deepl_api(source_text, source_lang, target_lang):
         # Authenticate
         # translator = deepl.Translator(env.str("DEEPL_AUTH_KEY"))  # For local env variables
         deepl_auth_key = os.environ["DEEPL_AUTH_KEY"]
+        print("\n------------")
+        print(deepl_auth_key.upper())
+        print("------------")
         translator = deepl.Translator(deepl_auth_key)  # For production env variables
 
         # Get current usage

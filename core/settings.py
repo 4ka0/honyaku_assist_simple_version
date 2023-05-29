@@ -26,6 +26,9 @@ if "DJANGO_DEBUG" in os.environ:
         "honyaku-assist-simple-dev.ap-northeast-1.elasticbeanstalk.com",
         "honyaku-apps.dev",
         "172.31.39.0",
+        "ec2-52-198-107-10.ap-northeast-1.compute.amazonaws.com",
+        "52.198.107.10",
+        "52.198.28.157",
     ]
 else:  # Local environment variables
     from environs import Env

@@ -1,6 +1,6 @@
 # Honyaku Assist
 
-A webapp for comparing output from the DeepL and Google Translate machine translation engines.
+A webapp for comparing output from the DeepL and Google Translate machine translation engines.<br>
 (Useful for tired translators needing some inspiration.)
 
 - Retrieves translation results from the DeepL and Google Translate APIs.

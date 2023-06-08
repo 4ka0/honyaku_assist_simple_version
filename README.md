@@ -1,4 +1,4 @@
-# Honyaku Archive
+# Honyaku Assist
 
 A webapp for comparing output from the DeepL and Google Translate machine translation engines.
 (Useful for tired translators needing some inspiration.)
